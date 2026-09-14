@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        BASE_URL = 'https://shop.qaautomationlabs.com'
+        DEMO_EMAIL = 'demo@demo.com'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -17,7 +22,14 @@ pipeline {
 
         stage('Run Playwright Tests') {
             steps {
-                bat 'set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 && npx playwright test --config=playwright.config.js'
+                withCredentials([
+                    string(
+                        credentialsId: 'demo-password',
+                        variable: 'DEMO_PASSWORD'
+                    )
+                ]) {
+                    bat 'set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 && npx playwright test --config=playwright.config.js'
+                }
             }
         }
     }
