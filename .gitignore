@@ -1,0 +1,13 @@
+﻿node_modules/
+.env
+.env.*
+!.env.example
+
+test-results/
+reports/
+playwright-report/
+allure-results/
+allure-report/
+
+*.log
+.DS_Store

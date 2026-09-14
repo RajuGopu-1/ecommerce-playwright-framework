@@ -1,0 +1,25 @@
+{
+  "name": "ecommerce-playwright-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:browser": "powershell -Command \"$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD='1'; npx playwright install chromium\"",
+    "test": "powershell -Command \"$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD='1'; npx playwright test --config=playwright.config.js\"",
+    "open": "powershell -Command \"$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD='1'; npx playwright open --browser=chromium --channel=chrome\"",
+    "codegen": "powershell -Command \"$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD='1'; npx playwright codegen --browser=chromium --channel=chrome\"",
+    "report:allure": "allure generate .\\reports\\allure-results -o .\\reports\\allure-report --clean",
+    "open:allure": "allure open .\\reports\\allure-report",
+    "test:smoke": "npx playwright test tests/ui/login.spec.js --project=chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "allure-commandline": "^2.43.0",
+    "allure-playwright": "^3.12.1",
+    "dotenv": "^17.4.2"
+  }
+}
